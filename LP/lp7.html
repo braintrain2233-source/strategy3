@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7: AI×外注化革命、ついにローンチ！</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            animation: gradientShift 10s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            50% { background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); }
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #fff; 
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            animation: rainbow 3s linear infinite;
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            margin: -20px -20px 40px -20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: sparkle 4s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+        h1 { 
+            font-size: 3em; 
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        .launch-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            backdrop-filter: blur(10px);
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .launch-announcement {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .benefits-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .benefit-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #667eea;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        .benefit-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .benefit-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .transformation-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            border: 3px dashed #ff6b6b;
+            position: relative;
+        }
+        .transformation-section::before {
+            content: '🚀';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.5em;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .quote::before {
+            content: '"';
+            font-size: 5em;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            color: rgba(0,0,0,0.1);
+        }
+        .highlight { 
+            color: #ff6b6b; 
+            font-weight: bold; 
+            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 3px 10px;
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .special-offer {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .special-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        .offer-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .urgency-section {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid #ff6b6b;
+        }
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #d63031;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: ctaShine 4s ease-in-out infinite;
+        }
+        @keyframes ctaShine {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        .cta-button { 
+            display: inline-block;
+            padding: 25px 50px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 60px; 
+            font-size: 1.5em; 
+            font-weight: bold;
+            text-align: center; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cta-button:hover { 
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+        .author-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .author-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .author-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container { margin: 20px; padding: 15px; }
+            h1 { font-size: 2.5em; }
+            .benefits-showcase { grid-template-columns: 1fr; }
+            .cta-button { padding: 20px 40px; font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 ついにこの時が来ました！<br>あなたのビジネスと人生を劇的に変える<br>「AI×外注化革命」</h1>
+            <div class="subtitle">激務からの完全解放。時間的・経済的自由への扉が今、開かれます。</div>
+            <div class="launch-badge">🚀 本日より販売開始！</div>
+        </div>
+
+        <div class="launch-announcement">
+            <h2 style="font-size: 2em; margin-bottom: 20px;">📢 7日間お待たせしました</h2>
+            <p style="font-size: 1.3em;">この7日間、あなたに伝えてきた「AI×外注化革命」の全貌が、ついに明らかになります。激務に追われる日々から解放され、時間的・経済的自由を手に入れるための「超実践的なロードマップ」が、今ここにあります。</p>
+        </div>
+
+        <div class="quote">
+            「寝ながら稼ぐ」は夢じゃない！
+        </div>
+
+        <div class="benefits-showcase">
+            <div class="benefit-card">
+                <div class="benefit-icon">⏰</div>
+                <div class="benefit-title">時間的自由</div>
+                <p>朝の目覚ましから深夜の作業まで、時間に縛られない生活を実現</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-title">経済的自由</div>
+                <p>働かなくても入ってくる収益システムで安定した収入を確保</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🧠</div>
+                <div class="benefit-title">心のゆとり</div>
+                <p>ストレスフリーな環境で、本当に大切なことに集中できる余裕</p>
+            </div>
+        </div>
+
+        <div class="transformation-section">
+            <h3 style="font-size: 1.8em; margin-bottom: 20px; margin-top: 30px;">🚗 ビジネスの「自動運転」を実現</h3>
+            <p style="font-size: 1.2em;">AIと外注化を組み合わせることで、あなたはビジネスの「自動運転」を実現できます。もう一人で抱え込む必要はありません。</p>
+        </div>
+
+        <div class="special-offer">
+            <div class="offer-title">🎁 今なら【早期購入特典】をご用意！</div>
+            <p style="font-size: 1.2em; position: relative; z-index: 2;">この特別な機会を逃せば、あなたはいつまで「忙しい」と言い続けますか？限定特典で、さらに加速したスタートを切ってください。</p>
+        </div>
+
+        <div class="urgency-section">
+            <h3>⚠️ このチャンスを逃さないでください</h3>
+            <div class="countdown">⏰ 早期購入特典は期間限定</div>
+            <p>今すぐ行動を起こし、あなたのビジネスと人生を次のステージへ。未来は、あなたの手の中にあります。</p>
+        </div>
+
+        <div class="launch-announcement">
+            <h3 style="font-size: 1.6em; margin-bottom: 20px;">📚 教材で手に入る全コンテンツ</h3>
+            <ul style="text-align: left; max-width: 600px; margin: 0 auto; font-size: 1.1em; line-height: 2;">
+                <li>✅ <strong>本編3部作</strong>：外注化戦略の基礎から応用まで</li>
+                <li>✅ <strong>実践ワークシート</strong>：理論を実際のビジネスに落とし込み</li>
+                <li>✅ <strong>成功・失敗事例集</strong>：リアルなビジネス体験から学ぶ</li>
+                <li>✅ <strong>AI活用戦略</strong>：最新技術で効率を3倍向上</li>
+                <li>✅ <strong>ROI計算ツール</strong>：投資効果を可視化</li>
+                <li>✅ <strong>購入者限定コンテンツ</strong>：さらに深い実践ノウハウ</li>
+            </ul>
+        </div>
+
+        <div class="author-link">
+            <p>📚 著者の他の作品もチェック！</p>
+            <a href="https://brain-market.com/u/supersonic/" target="_blank">
+                Brain作品一覧を見る →
+            </a>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="font-size: 2em; margin-bottom: 30px; position: relative; z-index: 2;">今こそ、行動の時です</h3>
+            <p style="font-size: 1.3em; margin-bottom: 30px; position: relative; z-index: 2;">7年間の実践で構築した外注化ノウハウの全てを、あなたの手に。</p>
+            <a href="#" class="cta-button">今すぐ「AI×外注化革命」を手に入れる！</a>
+            <p style="font-size: 1.1em; margin-top: 20px; position: relative; z-index: 2;">※早期購入特典は予告なく終了する場合があります</p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6: あなたの未来を変える設計図 - AI×外注化革命</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #fff; 
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            margin: -20px -20px 40px -20px;
+            color: #333;
+        }
+        h1 { 
+            font-size: 2.6em; 
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        .day-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .vision-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .lifestyle-card {
+            background: white;
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 5px solid #4ecdc4;
+            transition: transform 0.3s ease;
+        }
+        .lifestyle-card:hover {
+            transform: translateY(-5px);
+        }
+        .lifestyle-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        .lifestyle-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .future-timeline {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #ff6b6b;
+        }
+        .timeline-time {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-right: 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .compass-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            border: 3px dashed #ff6b6b;
+        }
+        .compass-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 20px;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+        }
+        .quote::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: rgba(0,0,0,0.1);
+        }
+        .highlight { 
+            color: #667eea; 
+            font-weight: bold; 
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+        .steps-to-freedom {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        .step-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        .step-number {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .cta-button { 
+            display: inline-block;
+            padding: 18px 40px; 
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-size: 1.3em; 
+            font-weight: bold;
+            text-align: center; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+        .cta-button:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .author-link {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .author-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .author-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container { margin: 20px; padding: 15px; }
+            h1 { font-size: 2.2em; }
+            .lifestyle-grid { grid-template-columns: 1fr; }
+            .timeline-item { flex-direction: column; text-align: center; }
+            .timeline-time { margin-bottom: 10px; margin-right: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌅 想像してみてください。<br>あなたのビジネスと人生が劇的に変わる未来を。</h1>
+            <div class="subtitle">時間的・経済的自由を手に入れる設計図</div>
+            <div class="day-badge">📅 Day 6: 変革の強調と未来の提示</div>
+        </div>
+
+        <div class="vision-section">
+            <h2>✨ あなたの理想の未来</h2>
+            <p style="font-size: 1.3em; margin-top: 20px;">朝、目覚ましより早く起きる必要もなく、深夜までパソコンと向き合うこともない。家族との時間も、自分の趣味の時間も、全てが自由になる未来。</p>
+        </div>
+
+        <div class="lifestyle-grid">
+            <div class="lifestyle-card">
+                <div class="lifestyle-icon">🌅</div>
+                <div class="lifestyle-title">自由な朝</div>
+                <p>目覚ましに追われることなく、自然に目覚める朝</p>
+            </div>
+            <div class="lifestyle-card">
+                <div class="lifestyle-icon">👨‍👩‍👧‍👦</div>
+                <div class="lifestyle-title">家族との時間</div>
+                <p>大切な人との時間を心から楽しめる余裕</p>
+            </div>
+            <div class="lifestyle-card">
+                <div class="lifestyle-icon">🎯</div>
+                <div class="lifestyle-title">好きなことに集中</div>
+                <p>趣味や自己投資に時間を使える充実感</p>
+            </div>
+            <div class="lifestyle-card">
+                <div class="lifestyle-icon">💰</div>
+                <div class="lifestyle-title">安定した収入</div>
+                <p>働かなくても入ってくる収益の安心感</p>
+            </div>
+        </div>
+
+        <div class="future-timeline">
+            <h3>📅 理想の一日のタイムライン</h3>
+            <div class="timeline-item">
+                <div class="timeline-time">7:00</div>
+                <div>自然に目覚め、ゆっくりとコーヒーを楽しみながら一日をスタート</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">9:00</div>
+                <div>外注チームからの進捗報告をチェック。全て順調に進行中</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">10:00</div>
+                <div>戦略的な業務に集中。新しいビジネスアイデアを練る</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">12:00</div>
+                <div>家族とランチ。仕事の心配をすることなく会話を楽しむ</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <div>趣味の時間。読書、運動、学習など自分の時間を満喫</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">18:00</div>
+                <div>家族との夕食。今日の売上報告を確認して満足</div>
+            </div>
+        </div>
+
+        <div class="compass-section">
+            <div class="compass-title">🧭 この教材は、そんな「あなたの未来」を現実にするための設計図です</div>
+            <p>もう迷う必要はありません。確実に、そして最短距離で成功へ向かうための「羅針盤」となるでしょう。</p>
+        </div>
+
+        <div class="quote">
+            「本当に私にもできるのかな…」そう不安に思う気持ち、よく分かります。
+        </div>
+
+        <div class="steps-to-freedom">
+            <h3>🚀 自由への3つのステップ</h3>
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <strong>現状を把握する</strong><br>
+                あなたの現在の業務を分析し、外注化可能な部分を特定
+            </div>
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <strong>段階的に実装する</strong><br>
+                リスクを最小化しながら、確実に外注化を進める
+            </div>
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <strong>システム化で完成</strong><br>
+                AIと外注化を組み合わせた自動運転システムを構築
+            </div>
+        </div>
+
+        <div class="vision-section">
+            <p style="font-size: 1.2em;">でも、最初の一歩を踏み出さなければ、何も変わりません。この教材は、あなたが安心して、確実に、そして最短距離で成功へ向かうための<span class="highlight">「羅針盤」</span>となるでしょう。</p>
+        </div>
+
+        <div class="compass-section">
+            <p style="font-size: 1.2em; color: #2d3436;">いよいよ明日、あなたのビジネスと人生を劇的に変える「AI×外注化革命」の全貌が明らかになります。この7日間で感じた期待を、ぜひ現実のものにしてください。</p>
+        </div>
+
+        <div class="author-link">
+            <p>📚 著者の他の作品もチェック！</p>
+            <a href="https://brain-market.com/u/supersonic/" target="_blank">
+                Brain作品一覧を見る →
+            </a>
+        </div>
+
+        <div class="cta-section">
+            <h3>明日の発表をお楽しみに！</h3>
+            <p>あなたの未来を掴む準備はできていますか？</p>
+            <a href="#" class="cta-button">あなたの未来を掴む！</a>
+        </div>
+    </div>
+</body>
+</html>
+
